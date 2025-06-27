@@ -56,4 +56,37 @@ export type TodoState =
       selectedTodosId: string[];
     };
 
-export type TodoEvent = {};
+export type TodoEvent =
+  | {
+      type: "SORT_DIRECTION_CHANGE";
+    }
+  | {
+      type: "SEARCH_TERM_CHANGE";
+    }
+  | {
+      type: "EDIT_CLICKED";
+    }
+  | {
+      type: "DELETE_CLICKED";
+    }
+  | {
+      type: "DELETE_MULTIPLE";
+    }
+  | {
+      type: "DELETE_ALL";
+    }
+  | {
+      type: "DELETE_CONFIRM";
+    }
+  | {
+      type: "RESET_FORM";
+    }
+  | {
+      type: "CREATE_TODO";
+    }
+  | {
+      type: "UPDATE_TODO";
+    }
+  | {
+      type: "SELECT_TODO";
+    };
