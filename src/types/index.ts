@@ -59,18 +59,27 @@ export type TodoState =
 export type TodoEvent =
   | {
       type: "SORT_DIRECTION_CHANGE";
+      payload: {
+        sortDirection: SortDirection;
+      };
     }
   | {
       type: "SEARCH_TERM_CHANGE";
+      payload: {
+        searchTerm: string;
+      };
     }
   | {
       type: "EDIT_CLICKED";
+      payload: {
+        todoId: string;
+      };
     }
   | {
       type: "DELETE_CLICKED";
-    }
-  | {
-      type: "DELETE_MULTIPLE";
+      payload: {
+        todoId: string;
+      };
     }
   | {
       type: "DELETE_ALL";
@@ -83,10 +92,11 @@ export type TodoEvent =
     }
   | {
       type: "CREATE_TODO";
-    }
-  | {
-      type: "UPDATE_TODO";
+      payload: Pick<Todo, "title" | "description">;
     }
   | {
       type: "SELECT_TODO";
+      payload: {
+        todoId: string;
+      };
     };
