@@ -1,15 +1,15 @@
 import { DefaultTodoCategory } from "@/utils/constants";
 
-type SortOption = "created_at" | "title" | "status";
-type SortDirection = "asc" | "desc";
-type TodoStatusOption = "completed" | "pending";
-type Categories = DefaultTodoCategory | string;
+export type SortOption = "created_at" | "title" | "status" | "category";
+export type SortDirection = "asc" | "desc";
+export type TodoStatusOption = "completed" | "pending";
+export type Categories = DefaultTodoCategory;
 
 export type FilterOption = {
   searchTerm: string;
   sortBy: SortOption;
   sortDirection: SortDirection;
-  category: Categories;
+  category: Categories | "";
   status: TodoStatusOption | "";
 };
 
@@ -24,6 +24,14 @@ export type Todo = {
 
 export type NewTodo = Pick<Todo, "title" | "description" | "category">;
 export type Todos = Todo[];
+
+export type StringCompare = (
+  direction: -1 | 1
+) => (aSort: string, bSort: string) => number;
+
+export type DateCompare = (
+  direction: -1 | 1
+) => (aSort: Date, bSort: Date) => number;
 
 export type TodoState =
   | {
