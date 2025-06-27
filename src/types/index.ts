@@ -12,7 +12,7 @@ export type Todo = {
   id: string;
   title: string;
   description: string;
-  state: TodoStatusOption;
+  status: TodoStatusOption;
   created_at: Date;
 };
 
