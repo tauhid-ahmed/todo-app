@@ -4,15 +4,17 @@ import {
   type TodoEvent,
   type FilterOption,
   Todo,
-} from "../_types/todo.types";
+} from "../types/todo.types";
 import { useReducer } from "react";
 
-import { applyFilters } from "../_utils/todo.utils";
+import { applyTodoFilters } from "../utils/todo-filters";
 
 const defaultFilterOption: FilterOption = {
   searchTerm: "",
   sortBy: "created_at",
   sortDirection: "asc",
+  category: "",
+  status: "",
 };
 
 const initialState: TodoState = {
@@ -30,6 +32,7 @@ const reducer = (state: TodoState, action: TodoEvent) => {
           id: crypto.randomUUID(),
           title: action.payload.title,
           description: action.payload.description,
+          category: action.payload.category,
           status: "pending",
           created_at: new Date(),
         };
