@@ -26,17 +26,23 @@ const initialState: TodoState = {
 const reducer = (state: TodoState, action: TodoEvent) => {
   switch (action.type) {
     case "CREATE_TODO":
-      if (state.status === "idle") {
-        const prevTodos = state.todos;
-        const newTodo: Todo = {
-          id: crypto.randomUUID(),
-          title: action.payload.title,
-          description: action.payload.description,
-          category: action.payload.category,
-          status: "pending",
-          created_at: new Date(),
-        };
-      }
-      return state;
+      if (state.status !== "idle") return state;
+      const newTodo: Todo = {
+        id: crypto.randomUUID(),
+        title: action.payload.title,
+        description: action.payload.description,
+        category: action.payload.category,
+        status: "pending",
+        created_at: new Date(),
+      };
+      const nextTodos = [...state.todos, newTodo];
+      const nextState: TodoState = {
+        status: "idle",
+        todos: nextTodos,
+        filteredTodos: applyTodoFilters(nextTodos, state.filterOption),
+        filterOption: state.filterOption,
+        selectedTodosId: state.selectedTodosId,
+      };
+      return nextState;
   }
 };
