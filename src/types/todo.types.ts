@@ -1,11 +1,16 @@
+import { DefaultTodoCategory } from "@/utils/constants";
+
 type SortOption = "created_at" | "title" | "status";
 type SortDirection = "asc" | "desc";
 type TodoStatusOption = "completed" | "pending";
+type Categories = DefaultTodoCategory | string;
 
 export type FilterOption = {
   searchTerm: string;
   sortBy: SortOption;
   sortDirection: SortDirection;
+  category: Categories;
+  status: TodoStatusOption | "";
 };
 
 export type Todo = {
@@ -13,8 +18,12 @@ export type Todo = {
   title: string;
   description: string;
   status: TodoStatusOption;
+  category: DefaultTodoCategory;
   created_at: Date;
 };
+
+export type NewTodo = Pick<Todo, "title" | "description" | "category">;
+export type Todos = Todo[];
 
 export type TodoState =
   | {
@@ -92,7 +101,7 @@ export type TodoEvent =
     }
   | {
       type: "CREATE_TODO";
-      payload: Pick<Todo, "title" | "description">;
+      payload: NewTodo;
     }
   | {
       type: "SELECT_TODO";
