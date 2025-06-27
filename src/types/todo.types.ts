@@ -42,20 +42,21 @@ export type TodoState =
   | {
       status: "idle";
       todos: Todo[];
+      filteredTodos: Todo[];
       filterOption: FilterOption;
       selectedTodosId: string[];
     }
   | {
       status: "editing";
       todos: Todo[];
-      todoId: string;
+      filteredTodos: Todo[];
       filterOption: FilterOption;
       selectedTodosId: string[];
     }
   | {
       status: "deleting";
       todos: Todo[];
-      todoId: string;
+      filteredTodos: Todo[];
       filterOption: FilterOption;
       selectedTodosId: string[];
     }
@@ -63,12 +64,14 @@ export type TodoState =
       status: "creating";
       todos: Todo[];
       newTod: Todo;
+      filteredTodos: Todo[];
       filterOption: FilterOption;
       selectedTodosId: string[];
     }
   | {
       status: "error";
       message: string;
+      filteredTodos: Todo[];
       filterOption: FilterOption;
       selectedTodosId: string[];
     };
