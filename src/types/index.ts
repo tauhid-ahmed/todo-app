@@ -17,26 +17,43 @@ export type Todo = {
 };
 
 export type TodoState =
-  | { status: "fetching"; filterOption: FilterOption }
-  | { status: "idle"; todos: Todo[]; filterOption: FilterOption }
+  | {
+      status: "fetching";
+      filterOption: FilterOption;
+      selectedTodosId: string[];
+    }
+  | {
+      status: "idle";
+      todos: Todo[];
+      filterOption: FilterOption;
+      selectedTodosId: string[];
+    }
   | {
       status: "editing";
       todos: Todo[];
       todoId: string;
       filterOption: FilterOption;
+      selectedTodosId: string[];
     }
   | {
       status: "deleting";
       todos: Todo[];
       todoId: string;
       filterOption: FilterOption;
+      selectedTodosId: string[];
     }
   | {
       status: "creating";
       todos: Todo[];
       newTod: Todo;
       filterOption: FilterOption;
+      selectedTodosId: string[];
     }
-  | { status: "error"; message: string; filterOption: FilterOption };
+  | {
+      status: "error";
+      message: string;
+      filterOption: FilterOption;
+      selectedTodosId: string[];
+    };
 
 export type TodoEvent = {};
