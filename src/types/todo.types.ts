@@ -63,7 +63,7 @@ export type TodoState =
   | {
       status: "creating";
       todos: Todo[];
-      newTod: Todo;
+      newTodo: Todo;
       filteredTodos: Todo[];
       filterOption: FilterOption;
       selectedTodosId: string[];
@@ -71,12 +71,17 @@ export type TodoState =
   | {
       status: "error";
       message: string;
+      todos: Todo[];
       filteredTodos: Todo[];
       filterOption: FilterOption;
       selectedTodosId: string[];
     };
 
 export type TodoEvent =
+  | {
+      type: "FETCH_SUCCESS";
+      payload: { todos: Todo[] };
+    }
   | {
       type: "SORT_DIRECTION_CHANGE";
       payload: {
@@ -112,7 +117,7 @@ export type TodoEvent =
     }
   | {
       type: "CREATE_TODO";
-      payload: NewTodo;
+      payload: { newTodo: NewTodo };
     }
   | {
       type: "SELECT_TODO";
